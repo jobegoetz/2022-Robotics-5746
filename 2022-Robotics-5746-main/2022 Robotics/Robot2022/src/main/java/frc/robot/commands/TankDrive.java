@@ -28,11 +28,17 @@ public class TankDrive extends CommandBase {
   public void execute() {
     double leftStickY = Robot.m_robotContainer.getDriverRawAxis(Constants.LEFT_STICK_Y);
     double rightStickY = Robot.m_robotContainer.getDriverRawAxis(Constants.RIGHT_STICK_Y);
+
+    Robot.driveTrain.setLeftMotors(leftStickY * (0.5)); //0.5 scales the sensitivity of the motors - Change this value to change the sensitivity of the motors - can also multiply it by itself to get exponential scaline
+    Robot.driveTrain.setRightMotors(rightStickY * (0.5)); //Can later turn this scale factor into constants so it can be easily changed an accessed
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.driveTrain.setLeftMotors(0); //ensures that if something else were to happen to the drivetrain that the motors would shut off
+    Robot.driveTrain.setRightMotors(0);
   }
 
   // Returns true when the command should end.
