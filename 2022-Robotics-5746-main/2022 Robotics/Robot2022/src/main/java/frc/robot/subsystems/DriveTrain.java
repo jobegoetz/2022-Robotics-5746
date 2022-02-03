@@ -9,9 +9,9 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.TankDrive;
 
 public class DriveTrain extends SubsystemBase {
   private TalonSRX motorLeft1 = new TalonSRX(Constants.MOTOR_LEFT_1_ID);
@@ -25,6 +25,12 @@ public class DriveTrain extends SubsystemBase {
      
   }
 
+  @Overridepublic 
+  public void initDefaultCommand(){
+    //Set the default command for a subsystem here
+    setDefaultCommand(new TankDrive());
+  }
+
 
   public void setLeftMotors(double speed){
     motorLeft1.set(ControlMode.PercentOutput, -speed);
@@ -35,6 +41,8 @@ public class DriveTrain extends SubsystemBase {
     motorRight1.set(ControlMode.PercentOutput, speed);
     motorRight2.set(ControlMode.PercentOutput, speed);
   }
+
+  
 
   @Override
   public void periodic() {
