@@ -19,7 +19,12 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  private XboxController driverController = new XboxController(Constants.DRIVER_CONTROLLER);
 
+  public double GetDriverRawAxis(int axis)
+  {
+    return driverController.getRawAxis(axis);
+  }
 
 
   /**
